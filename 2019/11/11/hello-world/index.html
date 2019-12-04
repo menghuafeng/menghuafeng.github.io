@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="hello-world | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="平时开发中，经常会用到这样一个语句： import Vue from &amp;#39;vue&amp;#39;; 由于浏览器兼容性问题，通常这个语法是在 webpack 的构建流搭建的项目中执行的，那么这个语句到底做了什么呢？ 其实在 nodejs 中，执行 import 就相当于执行了 require，而 require 被调用，其实会用到 require.resolve 这个函数来查找包的路径，而这个函数在">
+<meta name="description" content="JS含有多种的模块化规范,主要含有以下几种:  node本身实现的commonJS es6标准的esm 通用模块UMD   几个名词:  commonjs   ：用于后端的node通过 module.exports 暴露模块接口，通过 require 引入模块，特点：同步执行  AMD&#x2F;CMD&#x2F;UMD  :用于前端  ES6 module （EcmaScript Module）export &#x2F; i">
 <meta name="keywords" content="web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&#39;当执行 import vue from vue 时发生了什么&#39;">
-<meta property="og:url" content="https:&#x2F;&#x2F;menghuafeng.github.io&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E5%BD%93%E6%89%A7%E8%A1%8C%20import%20vue%20from%20vue%20%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88&#x2F;index.html">
+<meta property="og:title" content="&#39;JS规范-esm,cjs,um的区别&#39;">
+<meta property="og:url" content="https:&#x2F;&#x2F;menghuafeng.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;JS%E8%A7%84%E8%8C%83-esm,cjs,um%E7%9A%84%E5%8C%BA%E5%88%AB&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="平时开发中，经常会用到这样一个语句： import Vue from &amp;#39;vue&amp;#39;; 由于浏览器兼容性问题，通常这个语法是在 webpack 的构建流搭建的项目中执行的，那么这个语句到底做了什么呢？ 其实在 nodejs 中，执行 import 就相当于执行了 require，而 require 被调用，其实会用到 require.resolve 这个函数来查找包的路径，而这个函数在">
+<meta property="og:description" content="JS含有多种的模块化规范,主要含有以下几种:  node本身实现的commonJS es6标准的esm 通用模块UMD   几个名词:  commonjs   ：用于后端的node通过 module.exports 暴露模块接口，通过 require 引入模块，特点：同步执行  AMD&#x2F;CMD&#x2F;UMD  :用于前端  ES6 module （EcmaScript Module）export &#x2F; i">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-15T07:02:37.059Z">
+<meta property="og:updated_time" content="2019-12-04T08:54:13.328Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -150,7 +150,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(4)</small></div></li>
+    <li><div class="all active">全部文章<small>(5)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -162,7 +162,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="4">
+<input type="hidden" id="yelog_site_posts_number" value="5">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -197,11 +197,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color3">工具</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color4">web</a>
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" target="_blank" rel="noopener" class="color4">web</a>
+        <a href="javascript:" target="_blank" rel="noopener" class="color3">工具</a>
     </li>
     
     <div class="clearfix"></div>
@@ -211,19 +211,11 @@
     <nav id="title-list-nav">
         
         <a  class=""
-           href="/2019/11/11/hello-world/"
-           data-tag=""
+           href="/2019/12/04/JS%E8%A7%84%E8%8C%83-esm,cjs,um%E7%9A%84%E5%8C%BA%E5%88%AB/"
+           data-tag="web"
            data-author="" >
-            <span class="post-title" title="hello-world">hello-world</span>
-            <span class="post-date" title="2019-11-11 17:47:05">2019/11/11</span>
-        </a>
-        
-        <a  class=""
-           href="/2019/11/12/hexo-github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"
-           data-tag="工具"
-           data-author="" >
-            <span class="post-title" title="&#39;hexo+github 搭建自己的博客&#39;">&#39;hexo+github 搭建自己的博客&#39;</span>
-            <span class="post-date" title="2019-11-12 10:58:00">2019/11/12</span>
+            <span class="post-title" title="&#39;JS规范-esm,cjs,um的区别&#39;">&#39;JS规范-esm,cjs,um的区别&#39;</span>
+            <span class="post-date" title="2019-12-04 16:54:13">2019/12/04</span>
         </a>
         
         <a  class=""
@@ -235,11 +227,27 @@
         </a>
         
         <a  class=""
+           href="/2019/11/11/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="hello-world">hello-world</span>
+            <span class="post-date" title="2019-11-11 17:47:05">2019/11/11</span>
+        </a>
+        
+        <a  class=""
            href="/2019/11/15/%E8%AE%A4%E8%AF%86Flow/"
            data-tag="web"
            data-author="" >
             <span class="post-title" title="&#39;认识Flow&#39;">&#39;认识Flow&#39;</span>
             <span class="post-date" title="2019-11-15 14:59:41">2019/11/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/11/12/hexo-github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"
+           data-tag="工具"
+           data-author="" >
+            <span class="post-title" title="&#39;hexo+github 搭建自己的博客&#39;">&#39;hexo+github 搭建自己的博客&#39;</span>
+            <span class="post-date" title="2019-11-12 10:58:00">2019/11/12</span>
         </a>
         
     </nav>
@@ -390,7 +398,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#工具','#web',],
+            'data': ['#web','#工具',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
