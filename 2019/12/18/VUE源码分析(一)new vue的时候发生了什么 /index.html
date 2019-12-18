@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>JS规范-esm,cjs,um的区别 | 孟孟的博客</title>
+  <title>VUE源码分析(一)new vue的时候发生了什么 | 孟孟的博客</title>
   <meta name="keywords" content=" web ">
-  <meta name="description" content="JS规范-esm,cjs,um的区别 | 孟孟的博客">
+  <meta name="description" content="VUE源码分析(一)new vue的时候发生了什么 | 孟孟的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="通过alias.js文件可以查看到vue实例的导出位置,最终寻路径找到实例创建的位置src\core\instance\index.js中 12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;apos; &amp;amp;&amp;amp;    !(this instanceof Vue)  )">
 <meta name="keywords" content="web">
@@ -270,9 +270,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-JS规范-esm,cjs,um的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-VUE源码分析(一)new vue的时候发生了什么 " class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">JS规范-esm,cjs,um的区别</h1>
+        <h1 class="article-title">VUE源码分析(一)new vue的时候发生了什么</h1>
     
     <div class="article-meta">
         
@@ -288,7 +288,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-05 10:36:06'>2019-12-05 10:36</time>
+        创建时间:<time class="date" title='更新时间: 2019-12-18 17:19:02'>2019-12-18 17:20</time>
         
     </div>
     <div class="article-meta">
@@ -310,7 +310,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#规范间的对比"><span class="toc-text">规范间的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#require与import的区别"><span class="toc-text">require与import的区别 :</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -326,83 +326,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JS含有多种的模块化规范,主要含有以下几种:</p>
-<ul>
-<li>node本身实现的commonJS</li>
-<li>es6标准的esm</li>
-<li>通用模块UMD</li>
-</ul>
-<hr>
-<p>几个名词:</p>
-<ol>
-<li><p>commonjs   ：用于后端的node<br>通过 module.exports 暴露模块接口，通过 require 引入模块，特点：同步执行</p>
-</li>
-<li><p>AMD/CMD/UMD  :用于前端</p>
-</li>
-<li><p>ES6 module （EcmaScript Module）export / import，import()</p>
-</li>
-</ol>
+        <p>通过<code>alias.js</code>文件可以查看到vue实例的导出位置,最终寻路径找到实例创建的位置<code>src\core\instance\index.js</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Vue (options) &#123;</span><br><span class="line">  if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp;</span><br><span class="line">    !(this instanceof Vue)</span><br><span class="line">  ) &#123;</span><br><span class="line">    warn(&apos;Vue is a constructor and should be called with the `new` keyword&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  this._init(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出此方法最终执行了<code>this._init(options)</code>方法,这个方法在vue初始化的时候就定义了,位置在<code>src/core/instance/init.js</code>中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype._init = function (options?: Object) &#123;</span><br><span class="line">  const vm: Component = this</span><br><span class="line">  // a uid</span><br><span class="line">  vm._uid = uid++</span><br><span class="line"></span><br><span class="line">  let startTag, endTag</span><br><span class="line">  /* istanbul ignore if */</span><br><span class="line">  if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; config.performance &amp;&amp; mark) &#123;</span><br><span class="line">    startTag = `vue-perf-start:$&#123;vm._uid&#125;`</span><br><span class="line">    endTag = `vue-perf-end:$&#123;vm._uid&#125;`</span><br><span class="line">    mark(startTag)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // a flag to avoid this being observed</span><br><span class="line">  vm._isVue = true</span><br><span class="line">  // merge options</span><br><span class="line">  if (options &amp;&amp; options._isComponent) &#123;</span><br><span class="line">    // optimize internal component instantiation</span><br><span class="line">    // since dynamic options merging is pretty slow, and none of the</span><br><span class="line">    // internal component options needs special treatment.</span><br><span class="line">    initInternalComponent(vm, options)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    vm.$options = mergeOptions(</span><br><span class="line">      resolveConstructorOptions(vm.constructor),</span><br><span class="line">      options || &#123;&#125;,</span><br><span class="line">      vm</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  /* istanbul ignore else */</span><br><span class="line">  if (process.env.NODE_ENV !== &apos;production&apos;) &#123;</span><br><span class="line">    initProxy(vm)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    vm._renderProxy = vm</span><br><span class="line">  &#125;</span><br><span class="line">  // expose real self</span><br><span class="line">  vm._self = vm</span><br><span class="line">  initLifecycle(vm)</span><br><span class="line">  initEvents(vm)</span><br><span class="line">  initRender(vm)</span><br><span class="line">  callHook(vm, &apos;beforeCreate&apos;)</span><br><span class="line">  initInjections(vm) // resolve injections before data/props</span><br><span class="line">  initState(vm)</span><br><span class="line">  initProvide(vm) // resolve provide after data/props</span><br><span class="line">  callHook(vm, &apos;created&apos;)</span><br><span class="line"></span><br><span class="line">  /* istanbul ignore if */</span><br><span class="line">  if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; config.performance &amp;&amp; mark) &#123;</span><br><span class="line">    vm._name = formatComponentName(vm, false)</span><br><span class="line">    mark(endTag)</span><br><span class="line">    measure(`vue $&#123;vm._name&#125; init`, startTag, endTag)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if (vm.$options.el) &#123;</span><br><span class="line">    vm.$mount(vm.$options.el)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Vue初始化时进行了一下的一系列主要操作:<br><code>mergeOptions</code> 合并配置,<br><code>initLifecycle</code>初始化生命周期,<br><code>initEvents</code>初始化时间中心,<br><code>initRender</code>初始化渲染,<br><code>initState</code>初始化属性(data,props,computed,watcher等等)</p>
 <blockquote>
-<p>AMD（Async Module Definition）使用 define 定义模块，使用 require 加载模块，特点：依赖前置，提前执行<br>CMD（Common Module Definition）使用define 来定义一个模块，使用require 来加载一个模块，特点：尽可能懒执行<br>UMD（Universal Module Definition）通用解决方案，三个步奏：判断是否支持 AMD，判断是否支持 CommonJS，如果都没有 使用全局变量</p>
+<p>其中,在初始化属性中我们可以发现vue在属性命名时不能重复,因为<code>initState</code>方法中会最终将<code>props</code>,<code>methods</code>,<code>data</code>,<code>computed</code>等挂载到vm实例对象上        </p>
 </blockquote>
-<hr>
-<h2 id="规范间的对比"><a href="#规范间的对比" class="headerlink" title="规范间的对比"></a>规范间的对比</h2><table>
-<thead>
-<tr>
-<th>规范</th>
-<th>特点/定义</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CommonJS规范(同步加载模块)</td>
-<td>允许模块通过require方法来同步加载所要依赖的其他模块，然后通过exports或module.exports来导出需要暴露的接口</td>
-<td>1.简单容易使用 2.服务器端模块便于复用</td>
-<td>1.同步加载方式不适合在浏览器环境中使用,同步意味着阻塞加载，浏览器资源是异步加载的 2.不能非阻塞的并行加载多个模块</td>
-</tr>
-<tr>
-<td>AMD（异步加载模块）</td>
-<td>采用异步方式加载模块，模块的加载不影响后面语句的运行。所有依赖模块的语句，都定义在一个回调函数中，等到加载完成之后，回调函数才执行</td>
-<td>1.适合在浏览器环境中异步加载模块 2.可以并行加载多个模块  3.对于依赖的模块,依赖前置,提前执行</td>
-<td>1.提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅 2.不符合通用的模块化思维方式，是一种妥协的实现</td>
-</tr>
-<tr>
-<td>CMD规范（异步加载模块）</td>
-<td>1.CMD规范和AMD很相似，简单，并与CommonJS和Node.js的 Modules 规范保持了很大的兼容性；在CMD规范中，一个模块就是一个文件。2.定义模块使用全局函数define，其接收 factory 参数，factory 可以是一个函数，也可以是一个对象或字符串</td>
-<td>1.依赖就近，延迟执行 2.可以很容易在 Node.js 中运行</td>
-<td>依赖 SPM 打包，模块的加载逻辑偏重</td>
-</tr>
-<tr>
-<td>UMD</td>
-<td>1.UMD是AMD和CommonJS的糅合 2.AMD 以浏览器第一原则发展异步加载模块。 3.CommonJS 模块以服务器第一原则发展，选择同步加载，它的模块无需包装。 4.UMD先判断是否支持Node.js的模块（exports）是否存在，存在则使用Node.js模块模式；在判断是否支持AMD（define是否存在），存在则使用AMD方式加载模块</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ESM(ES6模块化)</td>
-<td>1.ES6 在语言标准的层面上，实现了模块功能，而且实现得相当简单，完全可以取代 CommonJS 和 AMD规范，成为浏览器和服务器通用的模块解决方案。2.ES6模块设计思想：尽量的静态化、使得编译时就能确定模块的依赖关系，以及输入和输出的变量（CommonJS和AMD模块，都只能在运行时确定这些东西）</td>
-<td>1.容易进行静态分析 2.面向未来的 EcmaScript 标准</td>
-<td>1.原生浏览器端还没有实现该标准 2.全新的命令字，新版的 Node.js才支持。</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="require与import的区别"><a href="#require与import的区别" class="headerlink" title="require与import的区别 :"></a>require与import的区别 :</h2><pre><code>require使用与CommonJs规范，import使用于Es6模块规范；所以两者的区别实质是两种规范的区别</code></pre><p>CommonJS：</p>
-<ul>
-<li>对于基本数据类型，属于复制。即会被模块缓存；同时，在另一个模块可以对该模块输出的变量重新赋值。</li>
-<li>对于复杂数据类型，属于浅拷贝。由于两个模块引用的对象指向同一个内存空间，因此对该模块的值做修改时会影响另一个模块。</li>
-<li>当使用require命令加载某个模块时，就会运行整个模块的代码。</li>
-<li>当使用require命令加载同一个模块时，不会再执行该模块，而是取到缓存之中的值。也就是说，CommonJS模块无论加载多少次，都只会在第一次加载时运行一次，以后再加载，就返回第一次运行的结果，除非手动清除系统缓存。</li>
-<li>循环加载时，属于加载时执行。即脚本代码在require的时候，就会全部执行。一旦出现某个模块被”循环加载”，就只输出已经执行的部分，还未执行的部分不会输出。</li>
-</ul>
-<p>ES6模块</p>
-<ul>
-<li>ES6模块中的值属于【动态只读引用】。</li>
-<li>对于只读来说，即不允许修改引入变量的值，import的变量是只读的，不论是基本数据类型还是复杂数据类型。当模块遇到import命令时，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。</li>
-<li>对于动态来说，原始值发生变化，import加载的值也会发生变化。不论是基本数据类型还是复杂数据类型。</li>
-<li>循环加载时，ES6模块是动态引用。只要两个模块之间存在某个引用，代码就能够执行。</li>
-<li>最后：require/exports 是必要通用且必须的；因为事实上，目前你编写的 import/export 最终都是编译为 require/exports 来执行的。</li>
-</ul>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
@@ -416,12 +347,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>JS规范-esm,cjs,um的区别</p>
+    <p><span class="copy-title">文章标题:</span>VUE源码分析(一)new vue的时候发生了什么</p>
     
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" target="_blank" rel="noopener" title="孟孟">孟孟</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-05, 10:36:06</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-05, 10:36:06</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/05/JS%E8%A7%84%E8%8C%83-esm,cjs,um%E7%9A%84%E5%8C%BA%E5%88%AB/" title="JS规范-esm,cjs,um的区别">https://menghuafeng.github.io/2019/12/05/JS%E8%A7%84%E8%8C%83-esm,cjs,um%E7%9A%84%E5%8C%BA%E5%88%AB/</a>
+    <p><span class="copy-title">发布时间:</span>2019-12-18, 17:20:00</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-18, 17:19:02</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/18/VUE%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90(%E4%B8%80)new%20vue%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%20/" title="VUE源码分析(一)new vue的时候发生了什么">https://menghuafeng.github.io/2019/12/18/VUE%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90(%E4%B8%80)new%20vue%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%20/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
